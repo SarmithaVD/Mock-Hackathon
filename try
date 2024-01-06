@@ -71,3 +71,5 @@ for i in range(1, n+1):
 	ans = min(ans, fun(i, (1 << (n+1))-1) + dist[i][1])
 
 print("The cost of most efficient tour = " + str(ans))
+
+{"v0": {"path": ["r0", "n13", "n11", "n0", "n5", "n6", "n7", "n19", "n17", "n14", "n10", "n15", "n4", "n12", "n9", "n2", "n18", "n1", "n16", "n3", "n8", "r0"]}}
