@@ -1,6 +1,6 @@
 import json
 import numpy as np
-from python_tsp.exact import solve_tsp_dynamic_programming
+from python_tsp.heuristics import solve_tsp_simulated_annealing, solve_tsp_local_search
 
 f = open("InputData\\level0.json")
 data = json.load(f)
@@ -22,15 +22,17 @@ for n in data["neighbourhoods"]:
     dist_matrix.append(dist)
 
 distance_matrix = np.array(dist_matrix)
-print(distance_matrix)
 
-permutation, distance = solve_tsp_dynamic_programming(distance_matrix)
+permutation, distance = solve_tsp_simulated_annealing(distance_matrix)
+permutation2, distance2 = solve_tsp_local_search(distance_matrix, x0=permutation, perturbation_scheme="ps3")
+
+#permutation, distance = solve_tsp_dynamic_programming(distance_matrix)
 opDict = {}
 pathDict = {}
 path = ["r0"]
 for n in permutation:
-    if n != 20:
-        path.append("n" + str(n))
+    if n != 0:
+        path.append("n" + str(n-1))
 path.append("r0")
 pathDict["path"] = path
 opDict["v0"] = pathDict
